@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Unpublished Posts</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>nieopublikowane</h1>
+    <a href="{{ url_for('index') }}">wroc do upoblikowanych</a>
+    {% for post in posts %}
+        <div class="post">
+            <h2>{{ post.title }}</h2>
+            <p>{{ post.date_posted }}</p>
+            <p>{{ post.content }}</p>
+            <form action="{{ url_for('publish_post', post_id=post.id) }}" method="POST">
+                <input type="submit" value="Publish">
+            </form>
+        </div>
+    {% endfor %}
+</body>
+</html>

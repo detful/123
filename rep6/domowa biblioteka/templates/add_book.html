@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Dodaj Książkę</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <h1>Dodaj nową książkę</h1>
+    <form method="POST" action="{{ url_for('add_book') }}">
+        {{ form.hidden_tag() }}
+        <p>
+            {{ form.title.label }}<br>
+            {{ form.title(size=20) }}<br>
+            {% if form.title.errors %}
+                {% for error in form.title.errors %}
+                    <span style="color: red;">{{ error }}</span>
+                {% endfor %}
+            {% endif %}
+        </p>
+        <p>
+            {{ form.author.label }}<br>
+            {{ form.author(size=20) }}<br>
+            {% if form.author.errors %}
+                {% for error in form.author.errors %}
+                    <span style="color: red;">{{ error }}</span>
+                {% endfor %}
+            {% endif %}
+        </p>
+        <p>
+            {{ form.year_of_publication.label }}<br>
+            {{ form.year_of_publication() }}<br>
+            {% if form.year_of_publication.errors %}
+            {% for error in form.year_of_publication.errors %}
+                <span style="color: red;">{{ error }}</span>
+            {% endfor %}
+        {% endif %}
+        </p>
+        <p>
+            {{ form.is_borrowed.label }}<br>
+            {{ form.is_borrowed }}<br>
+            {% if form.is_borrowed.errors %}
+                {% for error in form.is_borrowed.errors %}
+                    <span style="color: red;">{{ error }}</span>
+                {% endfor %}
+            {% endif %}
+        </p>
+        <p>{{ form.submit() }}</p>
+    </form>
+    <a href="{{ url_for('index') }}">Powrót do listy książek</a>
+</body>
+</html>
+
+
+
+
+<style>
+    body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+th {
+    background-color: #f2f2f2;
+}
+
+a {
+    text-decoration: none;
+    color: blue;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+</style>

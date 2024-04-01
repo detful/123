@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+    <title>utworz post</title>
+</head>
+<body>
+    <div class="container">
+    <h1>stworz post</h1>
+    <form action="{{ url_for('create_post') }}" method="POST">
+        <label for="title">tytuł:</label>
+        <input type="text" id="title" name="title" required><br><br>
+        <label for="content">zawartość:</label>
+        <textarea id="content" name="content" required></textarea><br><br>
+        <input type="checkbox" name="publish" {% if post.published %}checked{% endif %}> Publish
+        <input type="submit" value="Create Post">
+    </form>
+    <a href="{{ url_for('index') }}">wroc na homepage</a>
+    </div>
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{{ movie.title }}</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container mt-3">
+        <h1>{{ movie.title }}</h1>
+        <div class="row">
+            <div class="col-md-8">
+                <img src="https://image.tmdb.org/t/p/w780{{ movie.backdrop_path }}" class="img-fluid" alt="{{ movie.title }}">
+            </div>
+            <div class="col-md-4">
+                <h3>{{ movie.tagline }}</h3>
+                <p>{{ movie.overview }}</p>
+                <h4>Budget</h4>
+                <p>{{ movie.budget }}</p>
+                <h4>Genre</h4>
+                <p>{% for genre in movie.genres %}{{ genre.name }}{% if not loop.last %}, {% endif %}{% endfor %}</p>
+            </div>
+        </div>
+        <h3 class="mt-4">Cast</h3>
+        <div class="row">
+            {% for actor in cast %}
+                <div class="col-md-3">
+                    <div class="card mb-4 shadow-sm">
+                        <img src="https://image.tmdb.org/t/p/w185{{ actor.profile_path }}" class="card-img-top" alt="{{ actor.name }}">
+                        <div class="card-body">
+                            <p class="card-text">{{ actor.name }}</p>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+        <a href="{{ url_for('homepage') }}" class="btn btn-primary">Back to home</a>
+    </div>
+    <!-- Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
